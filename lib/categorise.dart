@@ -1,28 +1,24 @@
 
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
-import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 
 import 'package:http/http.dart' as http;
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:katk/Sign_up/logi.dart';
-import 'package:katk/retan/display_treatment.dart';
-import 'package:katk/segery/display_treatment.dart';
-import 'package:katk/shib/display_treatment.dart';
-import 'package:katk/snan/display_treatment.dart';
-import 'package:katk/tgmal/display_treatment.dart';
-import 'package:katk/thn/display_treatment.dart';
+import 'package:katk/retan/towscreen.dart';
+import 'package:katk/segery/towscreen.dart';
+import 'package:katk/shib/towscreen.dart';
+import 'package:katk/snan/towscreen.dart';
+import 'package:katk/tgmal/towscreen.dart';
+import 'package:katk/thn/towscreen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'Sign_up/modle.dart';
-import 'buy/databuy.dart';
-import 'children/display_treatment.dart';
-import 'comm/commnat.dart';
-import 'comm/displaysendget.dart';
-import 'eyes/display_treatment.dart';
-import 'hur/display_treatment.dart';
-import 'klf/display_treatment.dart';
+import 'children/towscreen.dart';
+import 'contro/controlpnal.dart';
+import 'eyes/towscreen.dart';
+import 'hur/towscreen.dart';
+import 'klf/towscreen.dart';
+import 'mainall.dart';
 
 class sss extends StatefulWidget {
 
@@ -71,6 +67,8 @@ savid(idd)async{
       throw Exception('Failed to load album');
     }
   }
+  bool isdecstop(BuildContext context) =>MediaQuery.of(context).size.width >= 850;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -103,78 +101,17 @@ savid(idd)async{
                       child: Column(
                           children: [
 
-                            Container(
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                Center(
-                                 child:Text(
-                                    "\n${snapshot.data![index].name}",
-                                    style: TextStyle(
-                                        fontSize: 18.0,
-                                        color: Colors.red.shade700
-                                    ),
-                  )
-                                  ),
-                                  TextButton(onPressed: (){
-                                    Navigator.push(context, MaterialPageRoute(
-                                        builder: (context) =>
-                                            saw()));
 
-                                    savid("${snapshot.data![index].id}");
-
-                                  },
-                                      child:  Container(
-                                    height:50,
-                                    width: 50,
-                                    decoration: BoxDecoration(
-                                      image:DecorationImage(
-                                        image:AssetImage(  'images/rr5.jpg',
-                                        ),
-                                        fit: BoxFit.cover,
-                                      ),
-                                    ),
-                                  ),
-                                  )
-                                ],
-                              ),
-                            ),
                             Column(
-                              crossAxisAlignment:CrossAxisAlignment.end ,
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+
                               children: [
-                                Container(
-                                  child: Padding(
-                                      padding: const EdgeInsets.all(8),
-                                      child: TextFormField(
-                                        textAlign:TextAlign.start,
-                                        decoration: InputDecoration(
-
-                                            suffixIcon: Icon(Icons.search ,
-                                                color: Colors.red.shade700),
-                                            hintText:'عماً تبحث',
-                                            hintStyle: TextStyle(  color: Colors.red.shade700,
-                                                fontSize: 18),
-                                            hintTextDirection: TextDirection.rtl,
-                                            enabledBorder: OutlineInputBorder(
-                                                borderSide: BorderSide(color: Colors.red.shade700,
-                                                    width: 1),
-                                                borderRadius:BorderRadius.circular(50)
-                                            ),
-                                            focusedBorder: OutlineInputBorder(
-                                                borderSide: BorderSide(color: Colors.red.shade700)
-                                            )
-                                        ),
-
-                                      )
-                                  ),
-                                ),
                                 Padding(
                                     padding: const EdgeInsets.all(8),
                                     child:
                                     Container(
                                       height: 30,
-                                      child:  Text('التصنيفات'' <' ,
+                                      child:  Text('التصنيفات' ,
                                         style: TextStyle(
                                           color: Colors.red.shade700,
                                           fontSize: 18,
@@ -183,15 +120,16 @@ savid(idd)async{
                                         textAlign: TextAlign.end ,
                                       ),
                                     ) ),
+                                SizedBox(height:MediaQuery.of(context).size.height*0.08,) ,
                                 Row(
                                   crossAxisAlignment: CrossAxisAlignment.center,
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                   children: [
                                     TextButton(onPressed: (){
                                       savid("${snapshot.data![index].id}");
                                       Navigator.push(context, MaterialPageRoute(
                                           builder: (context) =>
-                                              eyes()));
+                                              fscbo2()));
                                     },
                                       child:division('العناية بالعيون ','images/1z.jpg'),
                                     ),
@@ -199,81 +137,96 @@ savid(idd)async{
 
                                     Navigator.push(context, MaterialPageRoute(
                                           builder: (context) =>
-                                      chilld()));
+                                              fscbo1()));
                                     },
                                       child:  division('العناية بالحوامل و الاطفال','images/df5.jpg')),
+
+
+                                  ],),
+                                SizedBox(height:MediaQuery.of(context).size.width*0.08,) ,
+
+                                Row(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+
+                                  children: [
+                                    TextButton(onPressed: ()  {                                    savid("${snapshot.data![index].id}");
+
+                                    Navigator.push(context, MaterialPageRoute(
+                                        builder: (context) => fscbo3()));
+                                    },
+                                        child:  division('المستلزمات الطبية ','images/zzf.jpg')),
                                     TextButton(onPressed: (){                                    savid("${snapshot.data![index].id}");
 
                                     Navigator.push(context, MaterialPageRoute(
-                                          builder: (context) => segery()));
+                                        builder: (context) => fscbo()));
                                     },
                                         child: division('علاجات السكري','images/qa3.jpg'))
-
                                   ],),
+                                SizedBox(height:MediaQuery.of(context).size.width*0.08,) ,
+
                                 Row(
                                   crossAxisAlignment: CrossAxisAlignment.center,
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
 
                                   children: [
                                     TextButton(onPressed: (){                                    savid("${snapshot.data![index].id}");
 
                                     Navigator.push(context, MaterialPageRoute(
                                           builder: (context) =>
-                                              klb()));
+                                              fscbo5()));
                                     },
                                       child: division('علاجات مرضى القلب','images/3d8.jpg'),),
                                     TextButton(onPressed: (){                                    savid("${snapshot.data![index].id}");
 
                                     Navigator.push(context, MaterialPageRoute(
                                           builder: (context) =>
-                                              retan()));
+                                              fscbo4()));
                                     },
                                       child:  division('الرئتين و التنفس ','images/3la.jpg')),
-                                    TextButton(onPressed: (){                                    savid("${snapshot.data![index].id}");
 
-                                    Navigator.push(context, MaterialPageRoute(
-                                          builder: (context) => shib()));
-                                    },
-                                        child:  division(' العلاج بالاعشاب','images/nww.jpg'))
                                   ],),
+                                SizedBox(height:MediaQuery.of(context).size.width*0.08,) ,
 
                                 Row(
                                   crossAxisAlignment: CrossAxisAlignment.center,
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    TextButton(onPressed: (){                                    savid("${snapshot.data![index].id}");
+
+                                  Navigator.push(context, MaterialPageRoute(
+                                      builder: (context) => fscbo6()));
+                                  },
+                                      child:  division(' العلاج بالاعشاب','images/nww.jpg')),
+                                    TextButton(onPressed: (){                                    savid("${snapshot.data![index].id}");
+
+                                  Navigator.push(context, MaterialPageRoute(
+                                      builder: (context) => fscbo8()));
+
+                                  },
+                                      child:  division('مستحظرات طبيه','images/m01.jpg')),
+                                  ]),
+                                SizedBox(height:MediaQuery.of(context).size.width*0.08,) ,
+
+                                Row(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                   children: [
                                     TextButton(onPressed: (){                                    savid("${snapshot.data![index].id}");
 
                                     Navigator.push(context, MaterialPageRoute(
-                                        builder: (context) => thn()));
+                                        builder: (context) => fscbo9()));
                                     },
                                       child:   division('علاجات الاذن ','images/v7.jpg')),
-                                    TextButton(onPressed: (){                                    savid("${snapshot.data![index].id}");
-
-                                    Navigator.push(context, MaterialPageRoute(
-                                          builder: (context) => tgmal()));
-
-                                    },
-                                      child:  division('مستحظرات طبيه','images/m01.jpg')),
-                                    TextButton(onPressed: (){                                    savid("${snapshot.data![index].id}");
+                                           TextButton(onPressed: (){                                    savid("${snapshot.data![index].id}");
 
                                     Navigator.push(context, MaterialPageRoute(
                                           builder: (context) =>
-                                              ssnan()));
+                                              fscbo7()));
                                     },
                                         child: division('العناية الاسنان ','images/4dg.jpg')),
                                   ],),
-                                Row(
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    TextButton(onPressed: ()  {                                    savid("${snapshot.data![index].id}");
 
-                                    Navigator.push(context, MaterialPageRoute(
-                                          builder: (context) => hur()));
-                                      },
-                                      child:  division('السمتلزمات الطبية ','images/zzf.jpg')),
-
-                                  ],)
 
                               ],
                             )
@@ -289,27 +242,30 @@ savid(idd)async{
         },
 
     ),
-      floatingActionButton: FloatingActionButton(
-        elevation: 10,
-         child:Container(
+        floatingActionButton: FloatingActionButton(
+            elevation: 10,
+            child:Container(
+              height: 100,
+              width: 100,
+              child: Icon(Icons.home,
+                size: 30,
+                color: Colors.red.shade700,),
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(100),
 
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(100),
+                  color: Colors.white
+              ),
+            ),
 
-        image:DecorationImage(
-          image:AssetImage(  'images/3m7.jpg',
-          ),
-          fit: BoxFit.fill,
-        ),
-      ),
-    ),
-    onPressed:(){
+            onPressed:(){
 
-        Navigator.push(context, MaterialPageRoute(
-            builder: (context) => sdds()));
+              Navigator.push(context, MaterialPageRoute(
+                  builder: (context) => control()
+              )
+              );
 
-    }
-      )
+            }
+        )
     );
   }
   division(String text , String image){
@@ -317,7 +273,7 @@ savid(idd)async{
         padding: const EdgeInsets.all(8),
         child:Container(
           height: 80,
-          width: MediaQuery.of(context).size.width*0.3,
+          width:isdecstop(context)? MediaQuery.of(context).size.width*0.3:MediaQuery.of(context).size.width*0.4,
           decoration: BoxDecoration(
             color: Colors.white,
             borderRadius:BorderRadius.circular(15),

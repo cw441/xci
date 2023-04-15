@@ -1,10 +1,12 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
+import 'package:katk/segery/doionfe.dart';
 import 'package:katk/segery/model.dart';
 import 'package:katk/eyes/post_segery.dart';
 import 'package:katk/segery/secrren_details.dart';
 
+import 'serchdoi.dart';
 import 'getdata.dart';
 class segery extends StatefulWidget {
   const segery({Key? key}) : super(key: key);
@@ -16,11 +18,14 @@ class segery extends StatefulWidget {
 class _segeryState extends State<segery> {
   late Future<List<PostSd>> futurePost;
 
+
   @override
   void initState() {
     super.initState();
     futurePost = fetcaahPost();
   }
+  bool isdecstop(BuildContext context) =>MediaQuery.of(context).size.width >= 850;
+
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
@@ -32,19 +37,18 @@ class _segeryState extends State<segery> {
             return GridView.builder(
               clipBehavior: Clip.none,
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisSpacing: 12,
-                mainAxisSpacing: 1,
-                crossAxisCount: 3,
+                crossAxisSpacing: isdecstop(context)? 1:12,
+                mainAxisSpacing:isdecstop(context)? 10:50,
+                crossAxisCount:  isdecstop(context)? 3:2,
               ),
               itemCount: snapshot.data!.length,
-              itemBuilder: (_, index) =>Padding(
-               padding: const EdgeInsets.all(2),
-               child:Stack(
+              itemBuilder: (_, index) =>
+                  Stack(
                  children: [
 
                    Container(
-                       width: MediaQuery.of(context).size.width*0.33,
-                       height: MediaQuery.of(context).size.height*0.36,
+                       width:isdecstop(context)? MediaQuery.of(context).size.width*0.3:MediaQuery.of(context).size.width*0.4,
+                       height: MediaQuery.of(context).size.height*0.35,
                        decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius:BorderRadius.circular(15),
@@ -64,7 +68,7 @@ class _segeryState extends State<segery> {
                   child: Column (
                     mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisSize: MainAxisSize.min,
+                      mainAxisSize: MainAxisSize.max,
                       children: [
                       TextButton(
                           onPressed: (){
@@ -90,8 +94,8 @@ class _segeryState extends State<segery> {
                             borderRadius:BorderRadius.circular(15),
                             child: Image.memory(
                               base64Decode("${snapshot.data![index].image}"),
-                              width: MediaQuery.of(context).size.width*0.33,
-                              height: MediaQuery.of(context).size.height*0.25,
+                              width:isdecstop(context)? MediaQuery.of(context).size.width*0.3:MediaQuery.of(context).size.width*0.4,
+                              height: isdecstop(context)? MediaQuery.of(context).size.height*0.25:MediaQuery.of(context).size.width*0.17,
                               fit: BoxFit.fill,
                             )
                           )
@@ -121,16 +125,16 @@ class _segeryState extends State<segery> {
                            'اقرأ الوصف',
                            textAlign:TextAlign.end,
                            style: TextStyle(
-                               fontSize: 20.0,
+                               fontSize: isdecstop(context)? 18:14,
                                color: Colors.black54
                            ),
                          ),),
                        Spacer(),
                      Text(
-                       "${snapshot.data![index].name} ",
+                       "${snapshot.data![index].name} ".length>10?'...'+"${snapshot.data![index].name} ".substring(0,10):"${snapshot.data![index].name} ",
                           textAlign:TextAlign.end,
                           style: TextStyle(
-                              fontSize: 20.0,
+                              fontSize:   isdecstop(context)? 18:14,
                               color: Colors.black54
                           ),
                         ),
@@ -143,7 +147,7 @@ class _segeryState extends State<segery> {
                           r"$" "${snapshot.data![index].prase}",
                           textAlign:TextAlign.center,
                           style: TextStyle(
-                              fontSize: 18.0,
+                              fontSize:   isdecstop(context)?18:14,
                               color: Colors.yellow.shade600
                           ),
                         ),
@@ -151,17 +155,28 @@ class _segeryState extends State<segery> {
                       ]
                   )
                 ),
+                   IconButton(onPressed: () {
+                     setState(() {
+                       deleteAlbum("${snapshot.data![index].id}");
+                     });
+                   },
+                     alignment: Alignment.bottomRight,
 
+                     icon: Icon(Icons.delete,
+                       color: Colors.red.shade700,
+                     ),
+                   ),
 
                ],
                )
-              )
-            );
+
+              );
           } else {
             return Center(child: CircularProgressIndicator());
           }
         },
       ),
+
   //    floatingActionButton: FloatingActionButton(
   //        elevation: 10,
 

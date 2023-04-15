@@ -36,17 +36,17 @@ class _coommentState extends State<coomment> {
                 elevation: 1,
                 child: Row(
                   children: [
-                    IconButton(onPressed: () {
-                      setState(() {
-                        deleteAlbum("${snapshot.data![index].id}");
-                      });
-                    },
-                      alignment: Alignment.bottomRight,
+                 IconButton(onPressed: () {
+                   setState(() {
+                     deleteAlbum("${snapshot.data![index].id}");
+                   });
+                 },
+                   alignment: Alignment.bottomRight,
 
-                      icon: Icon(Icons.delete,
-                        color: Colors.red.shade700,
-                      ),
-                    ),
+                   icon: Icon(Icons.delete,
+                     color: Colors.red.shade700,
+                   ),
+                 ),
 
                     Expanded(
                      child:Text(

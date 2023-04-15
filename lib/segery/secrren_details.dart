@@ -15,6 +15,7 @@ import 'package:http/http.dart' as http;
 import '../buy/postbuy.dart';
 import '../comm/commnat.dart';
 import 'commnatseg.dart';
+import 'editnum.dart';
 import 'getdata.dart';
 
 class screenIn1 extends StatefulWidget {
@@ -199,7 +200,16 @@ class _screenIn1State extends State<screenIn1> {
                                             mainAxisSize: MainAxisSize.max,
                                             mainAxisAlignment: MainAxisAlignment.end,
                                             children: [
+                                              TextButton(onPressed: (){
+                                                Navigator.push(context, MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        pcssa  (apip:'https://sddkakn.onrender.com/userr/uptd/${id}') ));
+                                              },
+                                                child:Icon(Icons.edit,
+                                                  color: Colors.red.shade700,
 
+                                                ),  ) ,
+                                        Spacer(),
                                         Align(
                                         alignment: Alignment.topRight,
                                         child: Text(numberproduct ,
@@ -255,9 +265,8 @@ class _screenIn1State extends State<screenIn1> {
                                       )
                                     ),
 
-                                    SizedBox(height:MediaQuery.of(context).size.height*0.08 ,),
                                     Container(
-                                      height: MediaQuery.of(context).size.height*0.40,
+                                      height: MediaQuery.of(context).size.height*0.4,
                                       width: MediaQuery.of(context).size.width*1,
                                       child: coomwes(
                                           iad:id,

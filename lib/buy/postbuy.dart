@@ -30,6 +30,14 @@ class postedq extends StatefulWidget {
 }
 
 class _postedqState extends State<postedq> {
+  int result=0,num1=0,num2=0;
+malta(){
+  setState(() {
+    num1= int.parse(numberproduct.text);
+    num2= int.parse(praase);
+    result=num1*num2;
+  });
+}
 
   var formkey = GlobalKey<FormState>();
   var address = TextEditingController();
@@ -45,7 +53,7 @@ class _postedqState extends State<postedq> {
           "namebuy": naame,
           "image": imaag,
           "numberproduct": numberproduct.text,
-          "prase":praase,
+          "prase":result,
           "tem": " لم يصل  ",
           "address":address.text,
           "phone":phone.text,
@@ -113,7 +121,7 @@ class _postedqState extends State<postedq> {
 
                                       suffixIcon: Icon(Icons.medical_information ,
                                           color: Colors.red.shade700),
-                                      hintText:'عدد العلاجات ',
+                                      hintText:'عدد العلاجات باللغة الانكليزية ',
                                       hintStyle: TextStyle(  color: Colors.red.shade700,
                                           fontSize: 18),
                                       hintTextDirection: TextDirection.rtl,
@@ -128,7 +136,7 @@ class _postedqState extends State<postedq> {
                                   ),
                                   validator: (value){
                                     if(value!.length<1){
-                                      return "ادخل اسم الدواء" ;
+                                      return "ادخل العدد باللغة الانكليزية" ;
                                     }
                                     return null;
                                   },
@@ -214,6 +222,8 @@ class _postedqState extends State<postedq> {
 
                                 ),
                                 child: TextButton(onPressed:()async{
+                                  malta();
+
                                   if(formkey.currentState!.validate()){
                                     upload();
                                     Navigator.of(context).pushReplacement(

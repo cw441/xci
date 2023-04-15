@@ -4,6 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:katk/Sign_up/segin.dart';
 
 import 'categorise.dart';
+import 'contro/controlpnal.dart';
+import 'contro/passwoord.dart';
+import 'mainall.dart';
 
 void main() {
   runApp(const MyApp());
@@ -39,13 +42,14 @@ class _slashScreenState extends State<slashScreen> {
 trans() async {
     WidgetsFlutterBinding.ensureInitialized();
     SharedPreferences preferences =await SharedPreferences.getInstance();
+    var pass = preferences.getString('pass');
 
     var emall = preferences.getString('email');
     var passored= preferences.getString('passored');
     Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context)=>
 
-        emall != null && passored != null?sss():
-        logw()), (route) => false);
+   emall != null && passored != null?control():
+    eeeexxs()), (route) => false);
   }
   @override
   Widget build(BuildContext context) {

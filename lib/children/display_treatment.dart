@@ -22,6 +22,7 @@ class _chilldState extends State<chilld> {
     super.initState();
     futurePost = fetcaahPost();
   }
+  bool isdecstop(BuildContext context) =>MediaQuery.of(context).size.width >= 850;
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
@@ -33,15 +34,13 @@ class _chilldState extends State<chilld> {
             return GridView.builder(
               clipBehavior: Clip.none,
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisSpacing: 12,
-                mainAxisSpacing: 1,
-                crossAxisCount: 3,
+                crossAxisSpacing: isdecstop(context)? 1:12,
+                mainAxisSpacing:isdecstop(context)? 10:50,
+                crossAxisCount:  isdecstop(context)? 3:2,
               ),
               itemCount: snapshot.data!.length,
-              itemBuilder: (_, index) =>Padding(
-               padding: const EdgeInsets.all(2),
-               child:Stack(children: [Container(
-                   width: MediaQuery.of(context).size.width*0.33,
+              itemBuilder: (_, index) =>Stack(children: [Container(
+                   width:isdecstop(context)? MediaQuery.of(context).size.width*0.3:MediaQuery.of(context).size.width*0.4,
                    height: MediaQuery.of(context).size.height*0.35,
                   decoration: BoxDecoration(
                     color: Colors.white,
@@ -60,11 +59,12 @@ class _chilldState extends State<chilld> {
                     ],
                   ),
                   child: Column (
-                    mainAxisAlignment: MainAxisAlignment.end,
-                      crossAxisAlignment: CrossAxisAlignment.end,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisSize: MainAxisSize.max,
                       children: [
                       TextButton(
+
                           onPressed: (){
                         Navigator.push(context, MaterialPageRoute(
                           builder: (context) =>screenIn3412(
@@ -78,9 +78,6 @@ class _chilldState extends State<chilld> {
                               expar:snapshot.data![index].expar,
                             prase:snapshot.data![index].prase,
                             conutry:snapshot.data![index].conutry,
-
-
-
                             )
                          )
                         );
@@ -89,26 +86,57 @@ class _chilldState extends State<chilld> {
                             borderRadius:BorderRadius.circular(15),
                             child: Image.memory(
                               base64Decode("${snapshot.data![index].image}"),
-                              width: MediaQuery.of(context).size.width*0.33,
-                              height: MediaQuery.of(context).size.height*0.25,
-                              fit: BoxFit.cover,
+                              width:isdecstop(context)? MediaQuery.of(context).size.width*0.3:MediaQuery.of(context).size.width*0.4,
+                              height: isdecstop(context)? MediaQuery.of(context).size.height*0.25:MediaQuery.of(context).size.width*0.17,
+
+                              fit: BoxFit.fill,
                             )
-                          )
-                        ),
-                     Text(
-                       "${snapshot.data![index].name} ",
-                          textAlign:TextAlign.start,
-                          style: TextStyle(
-                              fontSize: 20.0,
-                              color: Colors.black54
                           ),
                         ),
+                        Row(children: [
+                  TextButton(
+                    onPressed: (){
+                      Navigator.push(context, MaterialPageRoute(
+                          builder: (context) =>screenIn3412(
+                            id:snapshot.data![index].id,
+                            name:snapshot.data![index].name,
+                            image:snapshot.data![index].image,
+                            desc:snapshot.data![index].desc,
+                            numberproduct:snapshot.data![index].numberproduct,
+                            sizeproduct:snapshot.data![index].sizeproduct,
+                            expar:snapshot.data![index].expar,
+                            prase:snapshot.data![index].prase,
+                            conutry:snapshot.data![index].conutry,
+
+
+
+                          )
+                      )
+                      );
+                    },
+                    child: Text(
+                      'اقرأ الوصف',
+                      textAlign:TextAlign.end,
+                      style: TextStyle(
+                          fontSize: isdecstop(context)? 18:14,
+                          color: Colors.black54
+                      ),
+                    ),),
+                         Spacer(),
+                         Text(
+                       "${snapshot.data![index].name} ".length>10?'...'+"${snapshot.data![index].name} ".substring(0,10):"${snapshot.data![index].name} ",
+                          textAlign:TextAlign.start,
+                          style: TextStyle(
+                              fontSize:   isdecstop(context)? 18:14,
+                              color: Colors.black54
+                          ),
+                        )]),
                         Center(
                           child:Text(
                           r"$" "${snapshot.data![index].prase}",
                           textAlign:TextAlign.center,
                           style: TextStyle(
-                              fontSize: 18.0,
+                              fontSize:   isdecstop(context)? 18:14,
                               color: Colors.yellow.shade600
                           ),
                         ),
@@ -116,21 +144,20 @@ class _chilldState extends State<chilld> {
                       ]
                   )
                 ),
-                 IconButton(onPressed: () {
-                   setState(() {
-                     deleteAlbum("${snapshot.data![index].id}");
-                   });
-                 },
-                   alignment: Alignment.bottomRight,
+                  IconButton(onPressed: () {
+                    setState(() {
+                      deleteAlbum("${snapshot.data![index].id}");
+                    });
+                  },
+                    alignment: Alignment.bottomRight,
 
-                   icon: Icon(Icons.delete,
-                     color: Colors.red.shade700,
-                   ),
-                 ),
+                    icon: Icon(Icons.delete,
+                      color: Colors.red.shade700,
+                    ),
+                  ),
 
                ],
                )
-              )
             );
           } else {
             return Center(child: CircularProgressIndicator());

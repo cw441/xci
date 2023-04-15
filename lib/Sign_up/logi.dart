@@ -6,6 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:katk/main.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../categorise.dart';
+import '../contro/controlpnal.dart';
+import '../mainall.dart';
 
 
 class log extends StatefulWidget {
@@ -198,7 +200,7 @@ bool isloading =false;
 
                            Navigator.of(context).pushReplacement(
                                MaterialPageRoute(builder: (context){
-                                 return sss();
+                                 return ssse();
                                 }
                                )
                            );
@@ -206,7 +208,7 @@ bool isloading =false;
                          });}else{
                            Navigator.of(context).pushReplacement(
                                MaterialPageRoute(builder: (context){
-                                 return sss();
+                                 return control();
                                }
                                )
                            );

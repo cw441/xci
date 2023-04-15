@@ -5,6 +5,8 @@ import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../categorise.dart';
+import '../contro/controlpnal.dart';
+import '../mainall.dart';
 import '../segery/display_treatment.dart';
 import 'logi.dart';
 
@@ -145,7 +147,7 @@ class _logwState extends State<logw> {
                                 if(formkey.currentState!.validate()){
                                   Navigator.of(context).pushReplacement(
                                       MaterialPageRoute(builder: (context){
-                                        return sss( );
+                                        return control( );
                                       }
                                       )
                                   );

@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'modelcom.dart';
 class coomwes extends StatefulWidget {
   String iad;
@@ -19,6 +20,7 @@ _coomwesState(this.iad,this.apidata);
   static const headers = {'Content-Type': 'application/json', 'Accept': 'application/json'};
 
   Future<List<Postyr>> fetchPost() async {
+
     final response =
     await http.get(Uri.parse(apidata),
       headers: headers
@@ -41,8 +43,10 @@ _coomwesState(this.iad,this.apidata);
   void initState() {
     super.initState();
     futurePost = fetchPost();
+
   }
-  @override
+
+@override
   Widget build(BuildContext context) {
     return  Scaffold(
         backgroundColor: Colors.white,
@@ -60,17 +64,17 @@ _coomwesState(this.iad,this.apidata);
                 elevation: 1,
                 child: Row(
                   children: [
-                    IconButton(onPressed: () {
-                      setState(() {
-                        deleteAlbum("${snapshot.data![index].id}");
-                      });
-                    },
-                      alignment: Alignment.bottomRight,
+                   IconButton(onPressed: () {
+                     setState(() {
+                       deleteAlbum("${snapshot.data![index].id}");
+                     });
+                   },
+                     alignment: Alignment.bottomRight,
 
-                      icon: Icon(Icons.delete,
-                        color: Colors.red.shade700,
-                      ),
-                    ),
+                     icon: Icon(Icons.delete,
+                       color: Colors.red.shade700,
+                     ),
+                   ),
 
                     Expanded(
                      child:Text(

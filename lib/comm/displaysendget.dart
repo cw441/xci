@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:katk/comm/postcommnet.dart';
 
+import '../contro/controlpnal.dart';
+import '../mainall.dart';
 import 'commnat.dart';
 class sdds extends StatefulWidget {
   const sdds({Key? key}) : super(key: key);
@@ -14,7 +16,7 @@ class _sddsState extends State<sdds> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(title: Text('اراء المستخدمين',
+      appBar: AppBar(title: Text('اراء العملاء',
 
         style: TextStyle(
         color: Colors.red.shade700,
@@ -38,7 +40,29 @@ class _sddsState extends State<sdds> {
           )
       ],
       ),
-      )
+      ),
+        floatingActionButton: FloatingActionButton(
+        elevation: 10,
+        child:Container(
+          height: 100,
+          width: 100,
+          child: Icon(Icons.home,
+            size: 30,
+            color: Colors.red.shade700,),
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(100),
+
+              color: Colors.white
+          ),
+        ),
+
+        onPressed:(){
+
+          Navigator.push(context, MaterialPageRoute(
+              builder: (context) => control()));
+
+        }
+    )
     );
   }
 }

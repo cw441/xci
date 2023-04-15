@@ -67,7 +67,7 @@ _pcsState(this.iad,
                               Padding(
                                   padding: const EdgeInsets.all(4),
                                   child:Container(
-                                    width: MediaQuery.of(context).size.width*0.85,
+                                    width: MediaQuery.of(context).size.width*0.7,
                                     child: TextFormField(
 
                                     decoration: InputDecoration(

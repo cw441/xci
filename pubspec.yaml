@@ -46,6 +46,9 @@ dependencies:
   telegram: ^0.0.3
   image_picker: ^0.8.6
   http: ^0.13.5
+  rename: ^2.1.1
+
+  location: ^4.4.0
 
 
 

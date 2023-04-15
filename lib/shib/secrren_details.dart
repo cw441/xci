@@ -8,7 +8,9 @@ import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:whatsapp_unilink/whatsapp_unilink.dart';
 
+import '../buy/postbuy.dart';
 import '../segery/commnatseg.dart';
+import '../segery/editnum.dart';
 import '../segery/postcomseg.dart';
 
 
@@ -193,7 +195,16 @@ class _fvgsyState extends State<fvgsy> {
                                             mainAxisSize: MainAxisSize.max,
                                             mainAxisAlignment: MainAxisAlignment.end,
                                             children: [
+                                              TextButton(onPressed: (){
+                                                Navigator.push(context, MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        pcssa  (apip:'https://sddkakn.onrender.com/user1/upt9/${id}') ));
+                                              },
+                                                child:Icon(Icons.edit,
+                                                  color: Colors.red.shade700,
 
+                                                ),  ) ,
+                                              Spacer(),
                                         Align(
                                         alignment: Alignment.topRight,
                                         child: Text(numberproduct ,
@@ -249,13 +260,12 @@ class _fvgsyState extends State<fvgsy> {
                                       )
                                     ),
 
-                                    SizedBox(height:MediaQuery.of(context).size.height*0.08 ,),
                                     Container(
-                                      height: MediaQuery.of(context).size.height*0.77,
+                                      height: MediaQuery.of(context).size.height*0.4,
                                       width: MediaQuery.of(context).size.width*1,
                                       child: coomwes(
                                           iad:id,
-                                          apidata:'https://sddkakn.onrender.com/user1/comnetuserg9/${id}'
+                                          apidata:'https://sddkakn.onrender.com/userr/comnetuserg/${id}'
                                       ),
                                     ),
                                     Container(
@@ -263,7 +273,7 @@ class _fvgsyState extends State<fvgsy> {
                                       width: MediaQuery.of(context).size.width*1,
                                       child: pcs(
                                           iad:id,
-                                          apip:"https://sddkakn.onrender.com/user1/comnetuserp9"
+                                          apip:"https://sddkakn.onrender.com/userr/comnetuserp"
                                       ),
                                     )
                                   ]
@@ -272,46 +282,33 @@ class _fvgsyState extends State<fvgsy> {
                     )
                      ]
       ),
-                  floatingActionButton: SpeedDial(
-                    icon: Icons.shopping_cart,
-                    backgroundColor:Colors.red.shade700,
-                    activeIcon: Icons.close,
-                    spacing: 5,
-                    spaceBetweenChildren: 5,
-                    onOpen: ()=> showToast('اختر احد طرق التواصل معنا'),
-                    children: [
-                      SpeedDialChild(
-                          child:Icon(Icons.call,
-                            color: Colors.red.shade700,
-                          ),
-                      onTap: () async {
-                        FlutterPhoneDirectCaller.callNumber('07802403955');
+                    floatingActionButton:  FloatingActionButton(
+                      elevation: 10,
+
+                      child:Container(
+                        height: 100,
+                        width: 100,
+                        child: Icon(Icons.shopping_cart,
+                          size: 30,
+                          color: Colors.red.shade700,),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(100),
+
+                            color: Colors.white
+                        ),
+                      ),
+
+                      onPressed:(){
+                        Navigator.push(context, MaterialPageRoute(
+                            builder: (context) =>
+                                postedq(
+                                    imaag:prase,
+                                    naame:name,
+                                    praase:conutry
+                                )
+                        ));
                       },
-                      label: 'اتصل بنا'),
-                        SpeedDialChild(
-                          child:Icon(Icons.whatshot,
-                            color: Colors.red.shade700,
-                          ),
-                          onTap: () async {
-                            final link = WhatsAppUnilink(
-                            phoneNumber: '07802403955',
-                             text: "Hey! I'm inquiring about the apartment listing",
-                                );
-                            await launchUrlString('$link'); },
-                          label: 'واتساب'),
-                      SpeedDialChild(
-                          child:Icon(Icons.telegram,
-                            color: Colors.red.shade700,
-                          ),
-                          onTap: () async {
-                            Telegram.send(
-                                username:'mohmod457',
-                                message:'Thanks for building Telegram Package :)'
-                            );
-                            },
-                          label: 'التليكرام'),
-                    ],
-                  ),
+                    )
                        );
   }
   Future showToast(String massage) async{

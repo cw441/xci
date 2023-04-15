@@ -53,7 +53,7 @@ class _eeeexxState extends State<eeeexx> {
                               Padding(
                                   padding: const EdgeInsets.all(4),
                                   child:Container(
-                                    width: MediaQuery.of(context).size.width*0.85,
+                                    width: MediaQuery.of(context).size.width*0.7,
                                     child: TextFormField(
 
                                     decoration: InputDecoration(
@@ -83,8 +83,8 @@ class _eeeexxState extends State<eeeexx> {
 
                                    ),
                                   )
-                                 ),Center(child:
-                                  Container(
+                                 ),Center(
+                                  child: Container(
                                   height: 40,
                                   width: 40,
                                   decoration: BoxDecoration(
